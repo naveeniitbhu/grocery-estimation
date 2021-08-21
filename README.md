@@ -27,3 +27,5 @@
     - First click view to retreive and then update from it
     - Check for no of ingredients to be provided
     - 
+
+- Execute scripts/ui-build.sh to build and serve ui files
