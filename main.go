@@ -77,6 +77,7 @@ func main() {
 	app.R.GET("/recipe/view/:dishname", app.ViewRecipe)
 	app.R.POST("/recipe/create/", app.CreateRecipe)
 	app.R.PUT("/recipe/create/", app.UpdateRecipe)
+	app.R.DELETE("/recipe/delete/:dishname", app.DeleteRecipe)
 
 	app.R.Run(":8070")
 }
@@ -213,7 +214,6 @@ func (app *App) UpdateRecipe(c *gin.Context) {
 						AND ($3>0) 
 						AND (array_length(akeys($4::hstore),1) >0) 
 						RETURNING id`,
-
 		&dish.Name, &dish.Preparation, &dish.Noofingredients, &dataIngred).Scan(&id)
 
 	if err == nil {
@@ -230,4 +230,21 @@ func (app *App) UpdateRecipe(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"Error": "Dish details not updated properly"})
 		panic(err)
 	}
+}
+func (app *App) DeleteRecipe(c *gin.Context) {
+
+	// dishname capitalize below
+	dishname := strings.Title(c.Query("dishname"))
+	db := app.Db
+
+	_, err := db.Exec(`DELETE FROM dishes WHERE name=$1`, dishname)
+
+	if err != nil {
+		log.Println("Error: error during deleting data from database")
+		panic(err)
+	} else {
+		log.Printf("INFO: successful deleted dish %s", dishname)
+		c.JSON(200, gin.H{"name": dishname})
+	}
+
 }
