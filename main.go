@@ -74,6 +74,10 @@ func main() {
 		Db: db,
 	}
 
+	app.R.Static("/static", "./static/static")
+	app.R.LoadHTMLGlob("./static/index.html")
+	app.R.GET("/", displayHtml)
+
 	app.R.GET("/recipe/view/:dishname", app.ViewRecipe)
 	app.R.POST("/recipe/create/", app.CreateRecipe)
 	app.R.PUT("/recipe/create/", app.UpdateRecipe)
@@ -84,6 +88,10 @@ func main() {
 
 func ToNullString(s string) sql.NullString {
 	return sql.NullString{String: s, Valid: s != ""}
+}
+
+func displayHtml(c *gin.Context) {
+	c.HTML(http.StatusOK, "index.html", nil)
 }
 
 func (app *App) CreateRecipe(c *gin.Context) {
