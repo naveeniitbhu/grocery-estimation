@@ -80,8 +80,8 @@ func main() {
 
 	app.R.GET("/recipe/view/", app.ViewRecipe)
 	app.R.POST("/recipe/create/", app.CreateRecipe)
-	app.R.PUT("/recipe/create/", app.UpdateRecipe)
-	app.R.DELETE("/recipe/delete/:dishname", app.DeleteRecipe)
+	app.R.PUT("/recipe/update/", app.UpdateRecipe)
+	app.R.DELETE("/recipe/delete/", app.DeleteRecipe)
 
 	app.R.Run(":8070")
 }

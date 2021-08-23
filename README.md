@@ -55,8 +55,30 @@ To test this apis, use Postman.
                 "noofingredients": 5,
                 "preparation": "Make gravy and add paneer"
             }
-- Update Recipe
-    - All fields are mandatory
-    - First click view to retreive and then update from it
-    - Check for no of ingredients to be provided
-    - 
+
+- PUT: UPDATE RECIPE (First Click view to retrieve details and then update it)
+    localhost:8070/recipe/update
+        Input:
+            {
+                "name": "juice",
+                "preparation":"cut fd dsdadsadand mic",
+                "noofingredients": 4,
+                "ingredientsdetails": {"a":"103330","b":"200","c":"300","d":"500"}
+            }
+
+        Output:
+            {
+                "id": 12,
+                "ingredientsdetails": {
+                    "a": "103330",
+                    "b": "200",
+                    "c": "300",
+                    "d": "500"
+                },
+                "name": "Juice",
+                "noofingredients": 4,
+                "preparation": "cut fd dsdadsadand mic"
+            }
+
+- DELETE: DELETE RECIPE by dishname
+    localhost:8070/recipe/delete?dishname=paneer
