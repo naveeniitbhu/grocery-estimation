@@ -78,46 +78,53 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div>Create a recipe</div>
-        <ThemeProvider theme={theme}>
-          <Button
-            variant="contained"
-            color={this.state.buttoncolortgt}
-            onClick={this.onCreateButtonSubmit}
-          >
-            Create
-          </Button>
-        </ThemeProvider>
-        <div>
-          <TextField
-            onChange={this.handleDishName}
-            style={paddingText}
-            label="Dish Name"
-            variant="outlined"
-          />
-          <TextField
-            onChange={this.handleNoOfIngredients}
-            style={paddingText}
-            label="No. of Ingredients"
-            variant="outlined"
-          />
-          <TextField
-            onChange={this.handleIngredientsDetails}
-            style={paddingText}
-            rows={10}
-            multiline
-            label="Ingredients Details"
-            variant="outlined"
-          />
+        <div className="createrecipe">Create a recipe</div>
+        <div className="wrapper">
+          <div className="childwrapper">
+            <ThemeProvider theme={theme}>
+              <Button
+                style={buttonStyleCreate}
+                variant="contained"
+                color={this.state.buttoncolortgt}
+                onClick={this.onCreateButtonSubmit}
+              >
+                Create
+              </Button>
+            </ThemeProvider>
+            <div className="dishNoDetailsWrapper">
+              <TextField
+                onChange={this.handleDishName}
+                style={paddingText}
+                label="Dish Name"
+                variant="outlined"
+              />
+              <TextField
+                onChange={this.handleNoOfIngredients}
+                style={paddingText}
+                label="No. of Ingredients"
+                variant="outlined"
+              />
+              <TextField
+                onChange={this.handleIngredientsDetails}
+                style={paddingText}
+                rows={10}
+                multiline
+                label="Ingredients Details"
+                variant="outlined"
+              />
+            </div>
+          </div>
+          <div className="childwrapper">
+            <TextField
+              onChange={this.handlePreparationProcess}
+              style={paddingText}
+              rows={20}
+              multiline
+              label="Preparation Process"
+              variant="outlined"
+            />
+          </div>
         </div>
-        <TextField
-          onChange={this.handlePreparationProcess}
-          style={paddingText}
-          rows={12}
-          multiline
-          label="Preparation Process"
-          variant="outlined"
-        />
       </div>
     );
   }
@@ -126,5 +133,9 @@ class App extends Component {
 export default App;
 
 const paddingText = {
-  padding: "10px",
+  paddingBottom: "10px",
+};
+
+const buttonStyleCreate = {
+  marginBottom: "22px",
 };
