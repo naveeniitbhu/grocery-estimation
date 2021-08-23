@@ -78,7 +78,7 @@ func main() {
 	app.R.LoadHTMLGlob("./static/index.html")
 	app.R.GET("/", displayHtml)
 
-	app.R.GET("/recipe/view/:dishname", app.ViewRecipe)
+	app.R.GET("/recipe/view/", app.ViewRecipe)
 	app.R.POST("/recipe/create/", app.CreateRecipe)
 	app.R.PUT("/recipe/create/", app.UpdateRecipe)
 	app.R.DELETE("/recipe/delete/:dishname", app.DeleteRecipe)
@@ -148,7 +148,6 @@ func (app *App) CreateRecipe(c *gin.Context) {
 }
 
 func (app *App) ViewRecipe(c *gin.Context) {
-
 	// dishname capitalize below
 	dishname := strings.Title(c.Query("dishname"))
 
