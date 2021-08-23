@@ -18,28 +18,43 @@ Setup Stesp:
 APIs:
 To test this apis, use Postman.
 
-- POST: localhost:8070/recipe/create
-    Input:
-    {
-        "name": "Paneer",
-        "preparation":"Make gravy and add Paneer",
-        "noofingredients": 3,
-        "ingredientsdetails": {"onion":"10", "tomato":"20", "paneer":"30"}
-    }
+- POST: CREATE RECIPE
+    localhost:8070/recipe/create
+        Input:
+        {
+            "name": "Paneer",
+            "preparation":"Make gravy and add Paneer",
+            "noofingredients": 3,
+            "ingredientsdetails": {"onion":"10", "tomato":"20", "paneer":"30"}
+        }
 
-    Output
-    {
-        "id": 1,
-        "ingredientsdetails": {
-            "onion": "10",
-            "paneer": "30",
-            "tomato": "20"
-        },
-        "name": "Paneer",
-        "noofingredients": 3,
-        "preparation": "Make gravy and add Paneer"
-    }
-
+        Output
+        {
+            "id": 1,
+            "ingredientsdetails": {
+                "onion": "10",
+                "paneer": "30",
+                "tomato": "20"
+            },
+            "name": "Paneer",
+            "noofingredients": 3,
+            "preparation": "Make gravy and add Paneer"
+        }
+        
+- GET: VIEW RECIPE(Using querystring)
+    localhost:8070/recipe/view?dishname=paneer
+        Output:
+            {
+                "id": 1,
+                "ingredientsdetails": {
+                    "onion": "10",
+                    "paneer": "30",
+                    "tomato": "20"
+                },
+                "name": "Paneer",
+                "noofingredients": 5,
+                "preparation": "Make gravy and add paneer"
+            }
 - Update Recipe
     - All fields are mandatory
     - First click view to retreive and then update from it
