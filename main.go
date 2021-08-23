@@ -111,12 +111,18 @@ func (app *App) CreateRecipe(c *gin.Context) {
 		panic(err)
 	}
 
+	if len(dish.Name) < 1 || len(dish.Preparation) < 1 || dish.Noofingredients < 1 || len(dish.Ingredientsdetails) < 1 {
+		c.JSON(http.StatusBadRequest, gin.H{"empty field error": "No field can be empty"})
+		return
+	}
+
 	dataIngred := hstore.Hstore{}
 	dataIngred.Map = make(map[string]sql.NullString)
 
 	for k, v := range dish.Ingredientsdetails {
 		dataIngred.Map[k] = ToNullString(v)
 	}
+
 	err := db.QueryRow(`INSERT INTO dishes(
 		name, 
 		preparation, 
